@@ -4,7 +4,7 @@
 # Popis: Makefile...
 
 CC = gcc
-CFLAGS = -g -std=c11 -pedantic -Wall -Wextra -fPIC -O2 
+CFLAGS = -g -std=c11 -pedantic -Wall -Wextra -fPIC
 LDFLAGS =
 
 OBJS = htab_hash_function.o htab_init.o htab_size.o htab_bucket_count.o htab_find.o htab_lookup_add.o htab_erase.o htab_for_each.o htab_clear.o htab_free.o
@@ -28,3 +28,14 @@ maxwordcount-dynamic: maxwordcount.c io.c libhtab.so
 
 clean:
 	rm -f *.o tac maxwordcount maxwordcount-dynamic libhtab.a libhtab.so
+
+check: all
+	@echo "=== TEST: tac ==="
+	printf "prvni\ndruhy\ntreti\n" | ./tac
+	@echo "=== TEST: tac -l ==="
+	printf "a\nb\nc\nd\ne\n" | ./tac -l 3
+	@echo "=== TEST: maxwordcount (static) ==="
+	echo "hello world hello foo world hello" | ./maxwordcount
+	@echo "=== TEST: maxwordcount-dynamic ==="
+	echo "hello world hello foo world hello" | LD_LIBRARY_PATH=. ./maxwordcount-dynamic
+	@echo "=== TESTY PROBEHLY ==="
