@@ -1,3 +1,9 @@
+// tac.c
+// Řešení IJC-DU2 příklad 1), 25.04. 2026
+// Autor: Josef Hruska, FSI
+// Přeloženo: gcc 14.2.0
+// Popis: Program čte vstupní soubor (nebo stdin) po řádcích a tiskne je v obráceném pořadí s využitím vlastního dynamicky alokovaného seznamu.
+
 #define _POSIX_C_SOURCE 200809L
 
 #include <stdio.h>
